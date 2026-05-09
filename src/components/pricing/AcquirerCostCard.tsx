@@ -177,7 +177,7 @@ function CostRowCells({ item, installments }: { item: CostItem; installments: In
       <td style={td}>
         <Tag status="Info" label={item.types === 'mdr' ? 'MDR' : 'Interchange+'} />
       </td>
-      <td style={{ ...td, textAlign: 'right', fontWeight: 600, color: '#1890FF' }}>
+      <td style={{ ...td, textAlign: 'right', fontWeight: 600, color: 'rgba(0,0,0,0.85)' }}>
         {item.rate.toFixed(2).replace('.', ',')}%
       </td>
       <td style={{ ...td, textAlign: 'right', color: 'rgba(0,0,0,0.65)' }}>

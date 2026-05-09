@@ -139,9 +139,9 @@ export default function BoxPrice({ costRows }: BoxPriceProps) {
       key: 'final',
       width: 180,
       render: (_: unknown, record: PriceRow) => (
-        <Link style={{ fontSize: 12, whiteSpace: 'nowrap' }}>
+        <Text style={{ fontSize: 12, whiteSpace: 'nowrap', color: 'rgba(0,0,0,0.85)' }}>
           {formatPrecoFinal(record)}
-        </Link>
+        </Text>
       ),
     },
   ]

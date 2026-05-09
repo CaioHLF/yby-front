@@ -893,7 +893,7 @@ export default function FinancialPage() {
               'Reprovado':        'Núclea rejeitou o registro do recebível por inconsistência no arquivo. Necessário corrigir e reenviar em Financeiro → Arquivos.',
             }
             const evCols: ColumnType<LiqEvento>[] = [
-              { title:'Lote', dataIndex:'loteId', key:'loteId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'#1890FF' }}>{v}</span> },
+              { title:'Lote', dataIndex:'loteId', key:'loteId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'Data', dataIndex:'data', key:'data', width:110, render: v => <span style={{ color:'rgba(0,0,0,0.65)', whiteSpace:'nowrap' }}>{v}</span> },
               { title:'Adquirente', dataIndex:'adq', key:'adq', width:120, render: v => <BrandLogo brand={v} size={20} showLabel /> },
               { title:'Bandeira', dataIndex:'bandeira', key:'bandeira', width:110, render: v => <BrandLogo brand={v} size={20} showLabel /> },
@@ -926,7 +926,7 @@ export default function FinancialPage() {
               l.parcelas.map(p => ({ ...p, loteId: l.loteId, data: l.data, adq: l.adq, bandeira: l.bandeira, statusNuclea: l.statusNuclea }))
             )
             const parcelaCols: ColumnType<ParcelaFlat>[] = [
-              { title:'Lote', dataIndex:'loteId', key:'loteId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'#1890FF' }}>{v}</span> },
+              { title:'Lote', dataIndex:'loteId', key:'loteId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'NSU', dataIndex:'nsu', key:'nsu', width:140, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'Data', dataIndex:'data', key:'data', width:110, render: v => <span style={{ color:'rgba(0,0,0,0.65)', whiteSpace:'nowrap' }}>{v}</span> },
               { title:'Adquirente', dataIndex:'adq', key:'adq', width:120, render: v => <BrandLogo brand={v} size={20} showLabel /> },
@@ -1089,7 +1089,7 @@ export default function FinancialPage() {
         ]
 
         const cols: ColumnType<PRow>[] = [
-          { title:'Repasse', dataIndex:'repId', key:'repId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'#1890FF' }}>{v}</span> },
+          { title:'Repasse', dataIndex:'repId', key:'repId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
           { title:'Merchant (EC)', dataIndex:'name', key:'name', render: v => <span style={{ fontWeight:500, color:'rgba(0,0,0,0.85)' }}>{v}</span> },
           { title:'CNPJ', dataIndex:'cnpj', key:'cnpj', render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.45)' }}>{v}</span> },
           { title:'Data repasse', dataIndex:'data', key:'data', width:110 },
@@ -1114,7 +1114,7 @@ export default function FinancialPage() {
           r.transacoes.map(t => ({ ...t, repId: r.repId, name: r.name, cnpj: r.cnpj, data: r.data }))
         )
         const txCols: ColumnType<TxFlat>[] = [
-          { title:'Repasse', dataIndex:'repId', key:'repId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'#1890FF' }}>{v}</span> },
+          { title:'Repasse', dataIndex:'repId', key:'repId', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
           { title:'NSU', dataIndex:'nsu', key:'nsu', width:130, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
           { title:'Merchant (EC)', dataIndex:'name', key:'name', render: v => <span style={{ fontWeight:500, color:'rgba(0,0,0,0.85)' }}>{v}</span> },
           { title:'Adquirente', dataIndex:'adq', key:'adq', width:120, render: v => <BrandLogo brand={v} size={20} showLabel /> },
@@ -1284,10 +1284,10 @@ export default function FinancialPage() {
 
           {(()=>{
             const cols: ColumnType<AntecipEC>[] = [
-              { title:'ID', dataIndex:'id', key:'id', width:90, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'#1890FF' }}>{v}</span> },
+              { title:'ID', dataIndex:'id', key:'id', width:90, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'Data', dataIndex:'data', key:'data', width:100, render: v => <span style={{ color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'Merchant (EC)', dataIndex:'merchant', key:'merchant', width:160, render: v => <span style={{ fontWeight:500, color:'rgba(0,0,0,0.85)', whiteSpace:'nowrap' }}>{v}</span> },
-              { title:'Valor antecipado', dataIndex:'valor', key:'valor', width:140, render: v => <span style={{ fontWeight:600, color:'#1890FF', whiteSpace:'nowrap' }}>{fmt(v)}</span> },
+              { title:'Valor antecipado', dataIndex:'valor', key:'valor', width:140, render: v => <span style={{ fontWeight:600, color:'rgba(0,0,0,0.85)', whiteSpace:'nowrap' }}>{fmt(v)}</span> },
               { title:'Taxa (a.m.)', dataIndex:'taxa', key:'taxa', width:90, render: v => <span style={{ color:'rgba(0,0,0,0.65)' }}>{v}</span> },
               { title:'Juros recebidos', dataIndex:'juros', key:'juros', width:130, render: v => <span style={{ fontWeight:600, color:'#52c41a', whiteSpace:'nowrap' }}>{fmt(v)}</span> },
               { title:'Vencimento original', dataIndex:'venc', key:'venc', width:140, render: v => <span style={{ color:'rgba(0,0,0,0.65)' }}>{v}</span> },
