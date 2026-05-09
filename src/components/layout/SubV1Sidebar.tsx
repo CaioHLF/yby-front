@@ -39,7 +39,7 @@ const moduleLabel: Partial<Record<ModuleKey, string>> = {
   agenda:         'Agenda',
   financeiro:     'Financeiro',
   reconciliation: 'Conciliação',
-  pricing:        'Pricing',
+  pricing:        'Custos & Precificação',
   usuarios:       'Usuários',
   settings:       'Configurações',
   // V1++

@@ -150,7 +150,7 @@ export default function PricingAntecipacaoPage() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <PageHeader
         title="Antecipação"
-        breadcrumb="Sub-adquirente · v1 / Pricing / Antecipação"
+        breadcrumb="Sub-adquirente · v1 / Custos & Precificação / Antecipação"
         extra={<Button type="primary" loading={saving} onClick={handleSave}>Salvar</Button>}
       />
 

@@ -64,7 +64,7 @@ function PricesPageInner() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <PageHeader
         title="Tabela de preços"
-        breadcrumb="Sub-adquirente · v1 / Pricing / Preços"
+        breadcrumb="Sub-adquirente · v1 / Custos & Precificação / Preços"
         extra={!loading ? (
           <>
             <Button icon={<Icon name="sparkles" size={14} />} disabled title="Em breve" style={{ opacity: 0.5, cursor: 'not-allowed' }}>Simulação</Button>

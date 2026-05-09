@@ -22,7 +22,7 @@ const NAV = [
       { label: 'DRE Operacional',   screen: 'financial', tab: 'dre'          },
     ] },
   { key: 'reconciliation', icon: 'reconcile', label: 'Conciliação', screen: 'reconciliation' },
-  { key: 'pricing', icon: 'creditCard', label: 'Pricing', screen: 'pricing',
+  { key: 'pricing', icon: 'creditCard', label: 'Custos & Precificação', screen: 'pricing',
     sub: [
       { label: 'Custos',                screen: 'pricing/costs',       tab: 'costs' },
       { label: 'Preços',                screen: 'pricing/prices',      tab: 'prices' },
