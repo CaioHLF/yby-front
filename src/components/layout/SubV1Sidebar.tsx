@@ -80,6 +80,14 @@ export default function SubV1Sidebar() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>(() => {
     const init: Record<string, boolean> = {}
     if (initialExpanded) init[initialExpanded] = true
+    // Expande o módulo pai cuja rota base está no pathname atual
+    const subMap = manifest?.submenus as Partial<Record<ModuleKey, string[]>> | undefined
+    if (subMap) {
+      manifest?.modules.forEach((m) => {
+        const route = getModuleRoute('subadquirente', m)
+        if (route && pathname.startsWith(route.split('?')[0])) init[m] = true
+      })
+    }
     return init
   })
   const [hoveredKey, setHoveredKey] = useState<string | null>(null)

@@ -137,11 +137,11 @@ export default function SubConfigAvancada() {
           </div>
         </div>
 
-        {/* 5 áreas em accordion */}
-        {AREAS.map((area) => (
+        {/* Área correspondente à rota atual */}
+        {AREAS.filter((area) => area.id === activeArea).map((area) => (
           <AccordionCard
             key={area.id}
-            defaultOpen={activeArea === area.id}
+            defaultOpen={true}
             header={
               <>
                 <div style={{ width: 32, height: 32, background: '#fafafa', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
