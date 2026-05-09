@@ -800,8 +800,8 @@ export default function FinancialPage() {
               <Icon name="download" size={14} color="#fff" /> Importar CSV
             </button>
           ) : tab === 'antecipacoes' ? (
-            <button onClick={()=>setDrawerSim(true)} style={{ border:'none', background:'#1890FF', color:'#fff', borderRadius:2, height:32, padding:'5px 16px', fontSize:13, cursor:'pointer', display:'flex', alignItems:'center', gap:6, fontWeight:500 }}>
-              <Icon name="barChart" size={14} color="#fff" /> Simular antecipação
+            <button onClick={()=>router.push('/pricing/antecipacao')} style={{ border:'1px solid #d9d9d9', background:'#fff', color:'rgba(0,0,0,0.65)', borderRadius:2, height:32, padding:'5px 16px', fontSize:13, cursor:'pointer', display:'flex', alignItems:'center', gap:6 }}>
+              <Icon name="settings" size={14} color="currentColor" /> Configurar taxas
             </button>
           ) : undefined
         }
