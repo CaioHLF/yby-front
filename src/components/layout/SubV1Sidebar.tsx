@@ -30,7 +30,6 @@ const moduleIconMap: Partial<Record<ModuleKey, string>> = {
   settings:       'settings',
   // V1++
   aprovacoes:     'checkCircle',
-  antecipacao:    'barChart',
 }
 
 const moduleLabel: Partial<Record<ModuleKey, string>> = {
@@ -45,7 +44,6 @@ const moduleLabel: Partial<Record<ModuleKey, string>> = {
   settings:       'Configurações',
   // V1++
   aprovacoes:     'Aprovações',
-  antecipacao:    'Antecipação',
 }
 
 const submenuLabels: Record<string, string> = {
@@ -57,13 +55,7 @@ const submenuLabels: Record<string, string> = {
   costs:        'Custos',
   prices:       'Preços',
   interchange:  'Matriz de Intercâmbio',
-  // Antecipação hub
-  visao:        'Visão geral',
-  taxas:        'Taxas',
-  risco:        'Risco',
-  limites:      'Limites',
-  operacional:  'Operacional',
-  notificacoes: 'Notificações',
+  antecipacao:  'Taxas de Antecipação',
 }
 
 export default function SubV1Sidebar() {

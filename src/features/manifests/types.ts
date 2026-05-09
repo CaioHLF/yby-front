@@ -23,7 +23,6 @@ export type ModuleKey =
   | 'antecipacao-programada'
   // V1++ SUB
   | 'aprovacoes'
-  | 'antecipacao'
 
 export interface PersonaManifest {
   label: string

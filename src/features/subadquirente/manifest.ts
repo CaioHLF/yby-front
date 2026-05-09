@@ -44,13 +44,11 @@ const v1 = {
     'reconciliation',
     'aprovacoes',
     'pricing',
-    'antecipacao',          // hub: visão geral + taxas + risco + limites + operacional + notificações
     'usuarios',
   ],
   submenus: {
     financeiro:   ['liquidacoes', 'repasses', 'arquivos', 'antecipacoes', 'dre'],
-    pricing:      ['costs', 'prices', 'interchange'],
-    antecipacao:  ['visao', 'taxas', 'risco', 'limites', 'operacional', 'notificacoes'],
+    pricing:      ['costs', 'prices', 'interchange', 'antecipacao'],
   },
   defaultExpanded: 'dashboard',
   badges: { dev: 'SA v1' },

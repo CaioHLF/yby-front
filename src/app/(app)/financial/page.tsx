@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import PageHeader from '@/components/shared/PageHeader'
 import Icon from '@/components/shared/Icon'
 import { useNavStore } from '@/store/nav.store'
@@ -683,6 +683,7 @@ function TabSync() {
 }
 
 export default function FinancialPage() {
+  const router = useRouter()
   const { financialTab, setFinancialTab } = useNavStore()
   const tab = financialTab
 
@@ -1282,6 +1283,18 @@ export default function FinancialPage() {
             </div>
           )}
 
+          <div style={{ display:'flex', justifyContent:'flex-end' }}>
+            <button
+              onClick={() => router.push('/pricing/antecipacao')}
+              style={{ display:'flex', alignItems:'center', gap:6, border:'1px solid #d9d9d9', background:'#fff', borderRadius:2, padding:'5px 12px', fontSize:13, cursor:'pointer', color:'rgba(0,0,0,0.65)' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = '#1890FF'; (e.currentTarget as HTMLElement).style.color = '#1890FF' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = '#d9d9d9'; (e.currentTarget as HTMLElement).style.color = 'rgba(0,0,0,0.65)' }}
+            >
+              <Icon name="settings" size={13} color="currentColor" />
+              Configurar taxas
+            </button>
+          </div>
+
           {(()=>{
             const cols: ColumnType<AntecipEC>[] = [
               { title:'ID', dataIndex:'id', key:'id', width:90, render: v => <span style={{ fontFamily:'Roboto Mono', fontSize:11, color:'rgba(0,0,0,0.65)' }}>{v}</span> },
@@ -1388,7 +1401,7 @@ export default function FinancialPage() {
                             <td style={{ padding:'9px 14px', color:'rgba(0,0,0,0.85)' }}>{fmt(r.parcela)}</td>
                             <td style={{ padding:'9px 14px', color:'#fa8c16', fontWeight:500 }}>{fmt(r.desconto)}</td>
                             <td style={{ padding:'9px 14px', fontWeight:600, color:r.saldo>0?'#fa8c16':'#52c41a' }}>{r.saldo>0?fmt(r.saldo):'Quitado'}</td>
-                            <td style={{ padding:'9px 14px', color:'#1890FF', fontFamily:'Roboto Mono', fontSize:11 }}>{r.op}</td>
+                            <td style={{ padding:'9px 14px', color:'rgba(0,0,0,0.65)', fontFamily:'Roboto Mono', fontSize:11 }}>{r.op}</td>
                           </tr>
                         ))}
                       </tbody>

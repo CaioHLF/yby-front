@@ -4,6 +4,7 @@ import { useState } from 'react'
 import PageHeader from '@/components/shared/PageHeader'
 import Icon from '@/components/shared/Icon'
 import BrandLogo from '@/components/shared/BrandLogo'
+import SubMonitorAvancado from '@/features/subadquirente/v1/MonitorAvancado/SubMonitorAvancado'
 
 const MERCHANTS = [
   { id:'MCH-001', name:'Americanas S.A.', cnpj:'00.776.574/0001-56', mcc:'5912', status:'Ativo', volume:'R$ 1.240.500,00', txns:8420 },
@@ -73,6 +74,7 @@ const MultiLineChart = ({ series, labels }: { series: { label: string; color: st
 
 export default function DashboardPage() {
   const [tab, setTab] = useState('geral')
+  const TABS = ['Geral', 'Planificação', 'Antecipação']
   const donutData = [
     { label:'Visa', value:4823, color:'#1890FF' },
     { label:'Mastercard', value:3241, color:'#FF6B35' },
@@ -92,7 +94,7 @@ export default function DashboardPage() {
     <div style={{ flex:1, overflow:'auto', display:'flex', flexDirection:'column' }}>
       <PageHeader title="Dashboard" breadcrumb="Sub-adquirente / Dashboard" extra={
         <div style={{ display:'flex', gap:8 }}>
-          {['Geral','Planificação'].map(t => (
+          {TABS.map(t => (
             <button key={t} onClick={() => setTab(t.toLowerCase())}
               style={{ border:tab===t.toLowerCase()?'1px solid #1890FF':'1px solid #d9d9d9', background:tab===t.toLowerCase()?'#e6f7ff':'#fff', color:tab===t.toLowerCase()?'#1890FF':'rgba(0,0,0,0.65)', borderRadius:2, padding:'6px 16px', fontSize:14, cursor:'pointer' }}>{t}</button>
           ))}
@@ -101,7 +103,13 @@ export default function DashboardPage() {
         </div>
       } onBack={null} />
 
-      <div style={{ padding:24, display:'flex', flexDirection:'column', gap:24 }}>
+      {tab === 'antecipação' && (
+        <div style={{ padding: 24 }}>
+          <SubMonitorAvancado embedded />
+        </div>
+      )}
+
+      {tab !== 'antecipação' && <div style={{ padding:24, display:'flex', flexDirection:'column', gap:24 }}>
         <div style={{ display:'flex', gap:24 }}>
           <KpiCard label="Cobranças criadas" value="1.240.500,00" sub="Total do período" trend="+14% vs. mês anterior" trendUp />
           <KpiCard label="Cobranças autorizadas" value="1.180.200,00" sub="Taxa de aprovação 95,2%" trend="+9%" trendUp />
@@ -164,7 +172,7 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   )
 }

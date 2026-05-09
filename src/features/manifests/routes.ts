@@ -59,23 +59,13 @@ const sub: RouteMap = {
       costs:        '/pricing/costs',
       prices:       '/pricing/prices',
       interchange:  '/pricing/interchange',
+      antecipacao:  '/pricing/antecipacao',
     },
   },
   usuarios: '/users',
   settings: '/settings',
   // V1++
   aprovacoes:   '/aprovacoes',
-  antecipacao: {
-    root: '/antecipacao',
-    subs: {
-      visao:        '/antecipacao',
-      taxas:        '/antecipacao/taxas',
-      risco:        '/antecipacao/risco',
-      limites:      '/antecipacao/limites',
-      operacional:  '/antecipacao/operacional',
-      notificacoes: '/antecipacao/notificacoes',
-    },
-  },
 }
 
 const aq: RouteMap = {

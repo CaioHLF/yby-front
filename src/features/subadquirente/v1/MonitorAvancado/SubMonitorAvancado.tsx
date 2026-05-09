@@ -51,7 +51,7 @@ const categoriaTag = (cat: Categoria) => {
   return <AntTag color={color} style={{ marginInlineEnd: 0 }}>{label}</AntTag>
 }
 
-export default function SubMonitorAvancado() {
+export default function SubMonitorAvancado({ embedded = false }: { embedded?: boolean }) {
   const [selectedAlerta, setSelectedAlerta] = useState<Alerta | null>(null)
 
   const totalVolume = subKpisCategoria.reduce((acc, k) => acc + k.volume30d, 0)
@@ -92,9 +92,9 @@ export default function SubMonitorAvancado() {
 
   return (
     <div style={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
-      <PageHeader title="Visão geral" breadcrumb="Sub-adquirente · v1 / Antecipação / Visão geral" />
+      {!embedded && <PageHeader title="Visão geral" breadcrumb="Sub-adquirente · v1 / Antecipação / Visão geral" />}
 
-      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ padding: embedded ? 0 : 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
         {/* KPIs globais */}
         <div style={{ display: 'flex', gap: 24 }}>
           <div style={{ flex: 1 }}><KpiCard label="Volume total 30d"   value={fmtBRLShort(totalVolume)}    subLabel="Antecipado nos últimos 30 dias" variant="info" /></div>
