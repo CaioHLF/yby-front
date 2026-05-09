@@ -3,7 +3,7 @@ import { useState } from 'react'
 import ShiftInput from './ShiftInput'
 
 const meta: Meta<typeof ShiftInput> = {
-  title: 'Shared/ShiftInput',
+  title: 'Design System/Atoms/ShiftInput',
   component: ShiftInput,
   parameters: {
     layout: 'centered',

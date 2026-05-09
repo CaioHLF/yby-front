@@ -140,17 +140,17 @@ export default function AgendaPage() {
   type KpiAg = { label:string; value:string; bg:string; border:string; color:string; sub:string; badge?:string|null; tip?: string; delta?: { value: string; positive?: boolean } }
   const KPI_BY_TAB: Record<string, Array<KpiAg>> = {
     calendario: [
-      { label:'Total a receber dos adquirentes', value:fmt(totalBruto), bg:'#e6f7ff', border:'#91d5ff', color:'#1890FF', sub:`${kpiData.length} parcelas · abr/2026`,
+      { label:'Total a receber dos adquirentes', value:fmt(totalBruto), bg:'#fff', border:'#f0f0f0', color:'#1890FF', sub:`${kpiData.length} parcelas · abr/2026`,
         tip:'Soma de todas as parcelas que os adquirentes vão liquidar para o sub no período. Antes de qualquer dedução.',
         delta:{ value:'+10% vs mar/26', positive:true } },
-      { label:'Antecipação Tomada', value:fmt(totalAntecip), bg:'#fff7e6', border:'#ffd591', color:'#fa8c16', sub:'Saldo devedor ao adquirente',
+      { label:'Antecipação Tomada', value:fmt(totalAntecip), bg:'#fff', border:'#f0f0f0', color:'#fa8c16', sub:'Saldo devedor ao adquirente',
         tip:'Operações de antecipação que o sub tomou junto ao adquirente. Esse saldo é deduzido na liquidação das parcelas vinculadas.' },
-      { label:'Deduções & Custos', value:fmt(totalComissao), bg:'#fff1f0', border:'#ffa39e', color:'#ff4d4f', sub:'MDR + chargebacks + outros',
+      { label:'Deduções & Custos', value:fmt(totalComissao), bg:'#fff', border:'#f0f0f0', color:'#ff4d4f', sub:'MDR + chargebacks + outros',
         tip:'Custos descontados pelos adquirentes na liquidação: MDR, chargebacks, tarifas operacionais.',
         delta:{ value:'+3% vs mar/26', positive:false } },
-      { label:'Líquido a Receber', value:fmt(totalLiquido), bg:'#f6ffed', border:'#b7eb8f', color:'#52c41a', sub:'Estimativa de crédito em conta',
+      { label:'Líquido a Receber', value:fmt(totalLiquido), bg:'#fff', border:'#f0f0f0', color:'#52c41a', sub:'Estimativa de crédito em conta',
         tip:'Bruto - Antecipação tomada - Deduções. Estimativa do que o sub recebe efetivamente em conta.' },
-      { label:'Recebíveis futuros (90 dias)', value:fmt(pipelineFuturo), bg:'#fffbe6', border:'#ffe58f', color:'#faad14', sub:'Parcelas previstas — todos os adquirentes',
+      { label:'Recebíveis futuros (90 dias)', value:fmt(pipelineFuturo), bg:'#fff', border:'#f0f0f0', color:'#faad14', sub:'Parcelas previstas — todos os adquirentes',
         tip:'Pipeline de recebíveis para os próximos 90 dias (vendas parceladas já capturadas). Indicador de fluxo de caixa futuro.' },
     ],
   }

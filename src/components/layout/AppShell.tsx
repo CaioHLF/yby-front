@@ -1,7 +1,7 @@
 'use client'
 
 import GlobalHeader from './GlobalHeader'
-import Sidebar from './Sidebar'
+import SidebarRouter from './SidebarRouter'
 
 interface Props {
   children: React.ReactNode
@@ -12,7 +12,7 @@ export default function AppShell({ children }: Props) {
     <div style={{ width:'100vw', height:'100vh', display:'flex', flexDirection:'column', background:'#F2F4F8' }}>
       <GlobalHeader />
       <div style={{ flex:1, display:'flex', overflow:'hidden' }}>
-        <Sidebar />
+        <SidebarRouter />
         <div style={{ flex:1, overflow:'auto', display:'flex', flexDirection:'column' }}>
           {children}
         </div>

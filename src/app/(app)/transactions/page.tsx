@@ -122,10 +122,10 @@ export default function TransactionsPage() {
   const taxaAprov = filtered.length > 0 ? Math.round((aprovadas / filtered.length) * 100) : 0
 
   const KPIS = [
-    { label:'Volume aprovado',  value:fmt(totalVol),     bg:'#f6ffed', border:'#b7eb8f', color:'#52c41a', sub:`${aprovadas} transações capturadas`        },
-    { label:'Transações',       value:String(filtered.length), bg:'#e6f7ff', border:'#91d5ff', color:'#1890FF', sub:'No período filtrado'                       },
-    { label:'Taxa de aprovação',value:`${taxaAprov}%`,   bg:'#f6ffed', border:'#b7eb8f', color:'#52c41a', sub:`${recusadas} recusadas no período`         },
-    { label:'Ticket médio',     value:aprovadas ? fmt(totalVol/aprovadas) : 'R$ 0,00', bg:'#f5f5f5', border:'#d9d9d9', color:'rgba(0,0,0,0.85)', sub:'Sobre transações aprovadas' },
+    { label:'Volume aprovado',  value:fmt(totalVol),     bg:'#fff', border:'#f0f0f0', color:'#52c41a', sub:`${aprovadas} transações capturadas`        },
+    { label:'Transações',       value:String(filtered.length), bg:'#fff', border:'#f0f0f0', color:'#1890FF', sub:'No período filtrado'                       },
+    { label:'Taxa de aprovação',value:`${taxaAprov}%`,   bg:'#fff', border:'#f0f0f0', color:'#52c41a', sub:`${recusadas} recusadas no período`         },
+    { label:'Ticket médio',     value:aprovadas ? fmt(totalVol/aprovadas) : 'R$ 0,00', bg:'#fff', border:'#f0f0f0', color:'rgba(0,0,0,0.85)', sub:'Sobre transações aprovadas' },
   ]
 
   const columns: ColumnType<Transaction>[] = [

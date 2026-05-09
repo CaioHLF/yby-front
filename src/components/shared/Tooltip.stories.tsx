@@ -3,7 +3,7 @@ import Tooltip from './Tooltip'
 import Tag from './Tag'
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Shared/Tooltip',
+  title: 'Design System/Atoms/Tooltip',
   component: Tooltip,
   parameters: {
     layout: 'centered',

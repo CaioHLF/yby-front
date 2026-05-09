@@ -3,7 +3,7 @@ import { CreditCard, Inbox, Search } from 'lucide-react'
 import EmptyState from './EmptyState'
 
 const meta: Meta<typeof EmptyState> = {
-  title: 'Shared/EmptyState',
+  title: 'Design System/Molecules/EmptyState',
   component: EmptyState,
   parameters: {
     layout: 'fullscreen',

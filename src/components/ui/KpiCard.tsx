@@ -6,12 +6,12 @@ import Icon from '@/components/shared/Icon'
 export type KpiVariant = 'info' | 'orange' | 'error' | 'success' | 'warning' | 'neutral'
 
 const variantStyles: Record<KpiVariant, { bg: string; border: string; valueColor: string }> = {
-  info:    { bg: '#E6F7FF', border: '#91D5FF',  valueColor: '#1890FF' },
-  orange:  { bg: '#FFF7E6', border: '#FFD591',  valueColor: '#FA8C16' },
-  error:   { bg: '#FFF1F0', border: '#FFCCC7',  valueColor: '#FF4D4F' },
-  success: { bg: '#F6FFED', border: '#D9F7BE',  valueColor: '#237804' },
-  warning: { bg: '#FFFBE6', border: '#FFE58F',  valueColor: '#874D00' },
-  neutral: { bg: '#F5F5F5', border: '#D9D9D9',  valueColor: 'rgba(0,0,0,0.85)' },
+  info:    { bg: '#fff', border: '#f0f0f0', valueColor: '#1890FF' },
+  orange:  { bg: '#fff', border: '#f0f0f0', valueColor: '#FA8C16' },
+  error:   { bg: '#fff', border: '#f0f0f0', valueColor: '#FF4D4F' },
+  success: { bg: '#fff', border: '#f0f0f0', valueColor: '#237804' },
+  warning: { bg: '#fff', border: '#f0f0f0', valueColor: '#D48806' },
+  neutral: { bg: '#fff', border: '#f0f0f0', valueColor: 'rgba(0,0,0,0.85)' },
 }
 
 interface KpiCardProps {

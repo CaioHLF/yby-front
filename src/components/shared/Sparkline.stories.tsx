@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import Sparkline from './Sparkline'
 
 const meta: Meta<typeof Sparkline> = {
-  title: 'Shared/Sparkline',
+  title: 'Design System/Molecules/Sparkline',
   component: Sparkline,
   parameters: {
     layout: 'centered',

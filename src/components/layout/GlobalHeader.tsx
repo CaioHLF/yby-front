@@ -8,6 +8,7 @@ import { useNavStore } from '@/store/nav.store'
 import { useAuthStore } from '@/store/auth.store'
 import { logout as apiLogout } from '@/services/authService'
 import ChangelogModal from './ChangelogModal'
+import PersonaSwitcher from './PersonaSwitcher'
 
 export default function GlobalHeader() {
   const router = useRouter()
@@ -85,9 +86,7 @@ export default function GlobalHeader() {
           <Icon name="menu" size={18} />
         </button>
         <img src="/logo-tupi.svg" alt="TUPI" style={{ height: 20, display: 'block' }} />
-        <span style={{ fontSize: 12, background: 'rgba(24,144,255,0.1)', color: '#1890FF', border: '1px solid #91d5ff', borderRadius: 2, padding: '1px 8px', fontWeight: 500 }}>
-          Sub-adquirente
-        </span>
+        <PersonaSwitcher />
       </div>
 
       {/* Direita: search + bell + user */}

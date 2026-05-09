@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import SkeletonBlock, { SkeletonLine, SkeletonCard } from './Skeleton'
 
 const meta: Meta<typeof SkeletonBlock> = {
-  title: 'Shared/Skeleton',
+  title: 'Design System/Atoms/Skeleton',
   component: SkeletonBlock,
   parameters: {
     layout: 'padded',
