@@ -8,6 +8,7 @@
 // - cap. 5 (status quo): regras inativas com tag cinza, ativas em verde claro
 
 import { useState } from 'react'
+import { Input, InputNumber, Select, Switch } from 'antd'
 import KpiCard from '@/components/ui/KpiCard'
 import DataTable, { type ColumnType } from '@/components/ui/DataTable'
 import PageHeader from '@/components/shared/PageHeader'
@@ -15,7 +16,6 @@ import Button from '@/components/shared/Button'
 import Tag from '@/components/shared/Tag'
 import Icon from '@/components/shared/Icon'
 import Drawer from '@/components/shared/Drawer'
-import EmptyState from '@/components/shared/EmptyState'
 import { ecRegrasAntecipacao, ecKpisProgramada, type RegraAntecipacao } from '@/mocks/ec/antecipacao-programada'
 
 const fmtBRL = (v: number) =>
@@ -160,23 +160,83 @@ export default function EcAntecipacaoProgramada() {
           </>
         }
       >
-        <EmptyState
-          title="Criação de regra — em construção"
-          description={
-            <span>
-              Form em desenvolvimento (FigJam 141:466). Vai conter:
-              <ul style={{ textAlign: 'left', margin: '12px auto', maxWidth: 420, fontSize: 13, color: 'rgba(0,0,0,0.65)' }}>
-                <li>Nome da regra</li>
-                <li>Tipo de trigger (calendário · valor agenda · fim de mês · dia da semana)</li>
-                <li>Filtros: bandeiras, MCC, faixa de parcelas</li>
-                <li>Pré-visualização com simulação de impacto</li>
-                <li>Ativar/desativar logo após criar</li>
-              </ul>
-              <strong>Pixel/Rian:</strong> sempre simula antes de salvar — sem custo afundado.
-            </span>
-          }
-          paddingY={48}
-        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {/* Nome */}
+          <div>
+            <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>Nome da regra</div>
+            <Input placeholder="Ex: Antecipação mensal Visa" size="middle" />
+          </div>
+
+          {/* Trigger */}
+          <div>
+            <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>Tipo de trigger</div>
+            <Select
+              style={{ width: '100%' }}
+              placeholder="Selecione o trigger"
+              options={[
+                { value: 'calendario',    label: 'Calendário (dia fixo do mês)' },
+                { value: 'valor_agenda',  label: 'Valor em agenda (threshold)' },
+                { value: 'fim_mes',       label: 'Fim de mês' },
+                { value: 'dia_semana',    label: 'Dia da semana' },
+              ]}
+            />
+          </div>
+
+          {/* Filtros */}
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: 'rgba(0,0,0,0.85)', marginBottom: 12 }}>Filtros</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div>
+                <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>Bandeiras</div>
+                <Select
+                  mode="multiple"
+                  style={{ width: '100%' }}
+                  placeholder="Todas as bandeiras"
+                  options={[
+                    { value: 'visa',       label: 'Visa' },
+                    { value: 'mastercard', label: 'Mastercard' },
+                    { value: 'elo',        label: 'Elo' },
+                    { value: 'amex',       label: 'Amex' },
+                    { value: 'hipercard',  label: 'Hipercard' },
+                  ]}
+                />
+              </div>
+              <div>
+                <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>MCC (categoria do EC)</div>
+                <Select
+                  mode="multiple"
+                  style={{ width: '100%' }}
+                  placeholder="Todos os MCCs"
+                  options={[
+                    { value: '5411', label: '5411 — Supermercados' },
+                    { value: '5812', label: '5812 — Restaurantes' },
+                    { value: '5999', label: '5999 — Varejo geral' },
+                    { value: '7011', label: '7011 — Hotéis' },
+                  ]}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: 12 }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>Parcela mínima</div>
+                  <InputNumber min={1} max={18} style={{ width: '100%' }} placeholder="1" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)', marginBottom: 6 }}>Parcela máxima</div>
+                  <InputNumber min={1} max={18} style={{ width: '100%' }} placeholder="18" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ativar ao criar */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderTop: '1px solid #f0f0f0' }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 500, color: 'rgba(0,0,0,0.85)' }}>Ativar regra ao criar</div>
+              <div style={{ fontSize: 12, color: 'rgba(0,0,0,0.45)' }}>A regra começará a disparar automaticamente</div>
+            </div>
+            <Switch defaultChecked />
+          </div>
+        </div>
       </Drawer>
     </div>
   )
