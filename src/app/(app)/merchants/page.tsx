@@ -46,7 +46,7 @@ export default function MerchantsPage() {
   const columns: ColumnType<Merchant>[] = [
     {
       title: 'ID', dataIndex: 'id', key: 'id', width: 100,
-      render: v => <span style={{ color: '#1890FF', fontFamily: 'Roboto Mono', fontSize: 12 }}>{v}</span>,
+      render: v => <span style={{ fontFamily: 'ui-monospace, "SF Mono", monospace', fontSize: 12, color: 'rgba(0,0,0,0.65)', userSelect: 'text' }}>{v}</span>,
     },
     {
       title: 'Nome', dataIndex: 'name', key: 'name',

@@ -67,7 +67,7 @@ function PricesPageInner() {
         breadcrumb="Configuração / Pricing / Preços"
         extra={!loading ? (
           <>
-            <Button icon={<Icon name="sparkles" size={14} />} onClick={handleSimulate}>Simulação</Button>
+            <Button icon={<Icon name="sparkles" size={14} />} disabled title="Em breve" style={{ opacity: 0.5, cursor: 'not-allowed' }}>Simulação</Button>
             <Button onClick={() => router.back()}>Cancelar</Button>
             <Button type="primary" loading={saving} onClick={handleSave}>Salvar</Button>
           </>

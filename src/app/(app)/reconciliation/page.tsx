@@ -26,8 +26,8 @@ export default function ReconciliationPage() {
   // Breadcrumb dinâmico — em drill-down mostra "...> [Bandeira]" para
   // contexto histórico (Nielsen #3 controle do usuário + #6 reconhecimento).
   const breadcrumb = view === 'detail' && selectedBrand
-    ? `Financeiro / Conciliação / ${selectedBrand.name.charAt(0).toUpperCase() + selectedBrand.name.slice(1)}`
-    : 'Financeiro / Conciliação'
+    ? `Sub-adquirente / Conciliação / ${selectedBrand.name.charAt(0).toUpperCase() + selectedBrand.name.slice(1)}`
+    : 'Sub-adquirente / Conciliação'
 
   // Em drill-down, o título pode mostrar a bandeira para reforçar onde estamos
   const title = view === 'detail' && selectedBrand
