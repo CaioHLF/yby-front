@@ -100,7 +100,7 @@ function getAreaFromPath(pathname: string): string {
 
 const AREA_LABEL: Record<string, string> = {
   taxas:        'Taxas',
-  risco:        'Risco e limites',
+  risco:        'Risco',
   limites:      'Limites',
   operacional:  'Operacional',
   notificacoes: 'Notificações',

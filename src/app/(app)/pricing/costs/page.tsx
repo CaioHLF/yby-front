@@ -91,7 +91,7 @@ function CostsPageInner() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <PageHeader
         title="Custo por Adquirente"
-        breadcrumb="Configuração / Pricing / Custos"
+        breadcrumb="Sub-adquirente · v1 / Pricing / Custos"
         extra={showConfig ? (
           <>
             <Button onClick={() => configuring ? setConfiguring(false) : router.back()}>Cancelar</Button>

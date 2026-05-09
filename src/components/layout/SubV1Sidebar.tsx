@@ -60,7 +60,7 @@ const submenuLabels: Record<string, string> = {
   // Antecipação hub
   visao:        'Visão geral',
   taxas:        'Taxas',
-  risco:        'Risco e limites',
+  risco:        'Risco',
   limites:      'Limites',
   operacional:  'Operacional',
   notificacoes: 'Notificações',

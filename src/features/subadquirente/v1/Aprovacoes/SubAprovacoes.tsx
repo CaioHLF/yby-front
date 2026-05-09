@@ -70,7 +70,7 @@ export default function SubAprovacoes() {
       align:  'right',
       width:  140,
       render: (_: unknown, row: SolicitacaoAprovacao) => (
-        <span style={{ fontWeight: 600, color: '#1890FF' }}>{fmtBRL(row.valorSolicitado)}</span>
+        <span style={{ fontWeight: 600, color: 'rgba(0,0,0,0.85)' }}>{fmtBRL(row.valorSolicitado)}</span>
       ),
     },
     { title: 'Parcelas', dataIndex: 'qtdParcelas', key: 'qtd', align: 'center', width: 100 },

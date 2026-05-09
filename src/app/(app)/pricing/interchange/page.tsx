@@ -35,7 +35,7 @@ export default function PricingPage() {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <PageHeader
         title="Matriz de Intercâmbio"
-        breadcrumb="Configuração / Pricing / Matriz de Intercâmbio"
+        breadcrumb="Sub-adquirente · v1 / Pricing / Matriz de Intercâmbio"
       />
 
       <div style={{ flex: 1, overflow: 'auto', background: '#F2F4F8', padding: '16px 24px' }}>
