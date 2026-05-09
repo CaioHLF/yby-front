@@ -25,7 +25,7 @@ const moduleIconMap: Partial<Record<ModuleKey, string>> = {
   agenda:         'calendar',
   financeiro:     'landmark',
   reconciliation: 'reconcile',
-  pricing:        'creditCard',
+  pricing:        'landmark',
   usuarios:       'users',
   settings:       'settings',
   // V1++
