@@ -11,6 +11,7 @@ import BrandLogo from '@/components/shared/BrandLogo'
 import DataTable, { type ColumnType } from '@/components/ui/DataTable'
 import StarRating from '@/features/adquirente/v0/shared/StarRating'
 import ScoreGauge, { tierFromScore } from '@/features/adquirente/v0/shared/ScoreGauge'
+import CardSection from '@/components/shared/CardSection'
 import { useTheme } from '@/stores/themeStore'
 import {
   classificacaoSetor,
@@ -39,18 +40,6 @@ const REFRAME_LABELS: Record<string, string> = {
 function reframeLabel(label: string, rating: number): string {
   if (rating > 2) return label
   return REFRAME_LABELS[label] ?? label
-}
-
-function CardSection({ icon, title, children, accent }: { icon: string; title: string; children: React.ReactNode; accent: string }) {
-  return (
-    <div style={{ background: '#fff', border: '1px solid rgba(0,0,0,0.06)', borderRadius: 2 }}>
-      <div style={{ padding: '14px 20px', borderBottom: '1px solid #f0f0f0', display: 'flex', alignItems: 'center', gap: 10 }}>
-        <Icon name={icon} size={16} color={accent} />
-        <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(0,0,0,0.85)' }}>{title}</span>
-      </div>
-      <div style={{ padding: 20 }}>{children}</div>
-    </div>
-  )
 }
 
 export default function AqResultadoIA() {
@@ -174,7 +163,7 @@ export default function AqResultadoIA() {
         })()}
 
         {/* Classificação do setor */}
-        <CardSection icon="barChart" title="Classificação do setor" accent={theme.primary}>
+        <CardSection icon="barChart" title="Classificação do setor">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
             {classificacaoSetor.map((c) => (
               <div key={c.label} style={{
@@ -208,7 +197,7 @@ export default function AqResultadoIA() {
 
         {/* Avaliação das imagens — empty state quando origem=pricing sem upload */}
         {origem === 'pricing' && !imagensUploaded && (
-          <CardSection icon="eye" title="Avaliação das imagens" accent={theme.primary}>
+          <CardSection icon="eye" title="Avaliação das imagens">
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -238,7 +227,7 @@ export default function AqResultadoIA() {
 
         {/* Avaliação das imagens — só renderiza se o usuário fez upload */}
         {imagensUploaded && (
-          <CardSection icon="eye" title="Avaliação das imagens" accent={theme.primary}>
+          <CardSection icon="eye" title="Avaliação das imagens">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
               {avaliacaoImagens.map((a) => (
                 <div key={a.label} style={{
@@ -265,7 +254,7 @@ export default function AqResultadoIA() {
 
         {/* Recomendações de carteira — exclusivo do fluxo Platinização */}
         {origem === 'platinizacao' && (
-          <CardSection icon="trendingUp" title="Recomendações de carteira" accent={theme.primary}>
+          <CardSection icon="trendingUp" title="Recomendações de carteira">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
               {recomendacoesCarteira.map((rec) => {
                 const palette = rec.tone === 'success'
@@ -314,7 +303,7 @@ export default function AqResultadoIA() {
         {/* Taxas detalhadas por bandeira — exclusivo do fluxo IA Pricing.
             Não faz sentido em "Análise de Platinização" (fluxo de carteira). */}
         {origem === 'pricing' && (
-        <CardSection icon="filter" title="Taxas detalhadas por bandeira" accent={theme.primary}>
+        <CardSection icon="filter" title="Taxas detalhadas por bandeira">
           {(() => {
             const brandHeader = (b: BandeiraTaxa) => (
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, justifyContent: 'center', width: '100%' }}>
@@ -381,7 +370,7 @@ export default function AqResultadoIA() {
         )}
 
         {/* Dados do estabelecimento */}
-        <CardSection icon="users" title="Dados do estabelecimento" accent={theme.primary}>
+        <CardSection icon="users" title="Dados do estabelecimento">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             {[
               { label: 'CNPJ',          value: dadosEstabelecimentoMock.cnpj },

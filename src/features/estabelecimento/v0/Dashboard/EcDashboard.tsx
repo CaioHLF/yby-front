@@ -1,13 +1,14 @@
 'use client'
 // Dashboard do Estabelecimento Comercial — V0.
-// Cards com header (título + descrição) e divider antes do body, padrão SUB.
+// Migrado para CardSection shared + wrappers Recharts (LineKPI, BarList).
+// Theme-aware: cor primária reage ao tema (Tupi/Vero).
 
 import KpiCard from '@/components/ui/KpiCard'
 import PageHeader from '@/components/shared/PageHeader'
-import Sparkline from '@/components/shared/Sparkline'
+import CardSection from '@/components/shared/CardSection'
 import EmptyState from '@/components/shared/EmptyState'
 import BrandLogo from '@/components/shared/BrandLogo'
-import { Progress } from 'antd'
+import { LineKPI, BarList } from '@/components/charts'
 import {
   ecDashboardKpis,
   ecDashboardTpv,
@@ -19,35 +20,6 @@ import {
   type StatusBreakdown,
 } from '@/mocks/ec/dashboard'
 
-const cardWrapper: React.CSSProperties = {
-  background: '#fff',
-  border: '1px solid rgba(0,0,0,0.06)',
-  borderRadius: 2,
-  display: 'flex',
-  flexDirection: 'column',
-}
-
-const cardHeader: React.CSSProperties = {
-  padding: '16px 20px',
-  borderBottom: '1px solid #f0f0f0',
-}
-
-const cardBody: React.CSSProperties = {
-  padding: '16px 20px',
-}
-
-const cardTitle: React.CSSProperties = {
-  fontSize: 14,
-  fontWeight: 500,
-  color: 'rgba(0,0,0,0.85)',
-}
-
-const cardSubtitle: React.CSSProperties = {
-  fontSize: 12,
-  color: 'rgba(0,0,0,0.45)',
-  marginTop: 2,
-}
-
 const statusVariantMap: Record<StatusBreakdown['status'], 'success' | 'warning' | 'neutral' | 'error' | 'info'> = {
   'Pago':           'success',
   'Pendente':       'warning',
@@ -58,29 +30,20 @@ const statusVariantMap: Record<StatusBreakdown['status'], 'success' | 'warning' 
 
 const fmtBRL = (v: number) =>
   v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+const fmtBRLshort = (v: number) =>
+  Math.abs(v) >= 1_000_000 ? `R$ ${(v / 1_000_000).toFixed(1)}M`
+  : Math.abs(v) >= 1_000   ? `R$ ${(v / 1_000).toFixed(0)}k`
+  : `R$ ${v.toLocaleString('pt-BR')}`
 
-interface SectionCardProps {
-  title: string
-  description?: string
-  children: React.ReactNode
-  flex?: number
-}
-
-function SectionCard({ title, description, children, flex }: SectionCardProps) {
-  return (
-    <div style={{ ...cardWrapper, flex }}>
-      <div style={cardHeader}>
-        <div style={cardTitle}>{title}</div>
-        {description && <div style={cardSubtitle}>{description}</div>}
-      </div>
-      <div style={cardBody}>{children}</div>
-    </div>
-  )
+const BRAND_COLORS: Record<string, string> = {
+  Visa:       '#1A1F71',
+  Mastercard: '#EB001B',
+  Elo:        '#FFC72C',
+  Hipercard:  '#B3131B',
+  Amex:       '#0690FF',
 }
 
 export default function EcDashboard() {
-  const tpvValues = ecDashboardTpv.map((p) => p.value)
-
   return (
     <div style={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
       <PageHeader title="Dashboard" breadcrumb="Estabelecimento Comercial / Dashboard" onBack={null} />
@@ -95,17 +58,16 @@ export default function EcDashboard() {
           ))}
         </div>
 
-        {/* Gráfico TPV */}
-        <SectionCard title="Gráfico de cobranças" description="Volume total transacionado (TPV)">
-          <Sparkline data={tpvValues} color="#1890FF" width={1024} height={140} filled />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 11, color: 'rgba(0,0,0,0.45)' }}>
-            <span>{ecDashboardTpv[0]?.date}</span>
-            <span>{ecDashboardTpv[Math.floor(ecDashboardTpv.length / 2)]?.date}</span>
-            <span>{ecDashboardTpv[ecDashboardTpv.length - 1]?.date}</span>
-          </div>
-        </SectionCard>
+        {/* TPV */}
+        <CardSection title="Gráfico de cobranças" subtitle="Volume total transacionado (TPV)" icon="trendingUp">
+          <LineKPI
+            data={ecDashboardTpv.map((p) => ({ label: p.date, value: p.value }))}
+            formatValue={fmtBRLshort}
+            height={220}
+          />
+        </CardSection>
 
-        {/* Cards de status */}
+        {/* Status */}
         <div style={{ display: 'flex', gap: 24 }}>
           {ecDashboardStatus.map((s) => (
             <div key={s.status} style={{ flex: 1, minWidth: 0 }}>
@@ -119,65 +81,52 @@ export default function EcDashboard() {
           ))}
         </div>
 
-        {/* Formas de pagamento + Bandeiras */}
-        <div style={{ display: 'flex', gap: 24 }}>
-          <SectionCard title="Formas de pagamento mais utilizadas" flex={1}>
-            {ecDashboardPaymentMethods.map((m) => (
-              <div key={m.method} style={{ marginBottom: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
-                  <span>{m.method}</span>
-                  <span style={{ color: 'rgba(0,0,0,0.65)' }}>{m.percent.toFixed(2).replace('.', ',')}%</span>
-                </div>
-                <Progress percent={m.percent} showInfo={false} size="small" />
-              </div>
-            ))}
-          </SectionCard>
-          <SectionCard title="Bandeiras mais utilizadas" flex={1}>
-            {ecDashboardBrands.map((b) => (
-              <div key={b.brand} style={{ marginBottom: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                    <BrandLogo brand={b.brand} size={20} />
-                    <span>{b.brand}</span>
-                  </span>
-                  <span style={{ color: 'rgba(0,0,0,0.65)' }}>{b.percent.toFixed(2).replace('.', ',')}%</span>
-                </div>
-                <Progress percent={b.percent} showInfo={false} size="small" strokeColor={b.brand === 'Visa' ? '#1A1F71' : '#EB001B'} />
-              </div>
-            ))}
-          </SectionCard>
+        {/* Formas + Bandeiras */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+          <CardSection title="Formas de pagamento mais utilizadas" icon="creditCard">
+            <BarList
+              data={ecDashboardPaymentMethods.map((m) => ({ label: m.method, value: m.percent }))}
+              asPercent
+            />
+          </CardSection>
+
+          <CardSection title="Bandeiras mais utilizadas" icon="filter">
+            <BarList
+              data={ecDashboardBrands.map((b) => ({
+                label: b.brand,
+                value: b.percent,
+                color: BRAND_COLORS[b.brand],
+              }))}
+              asPercent
+            />
+            {/* Logos das bandeiras como referência visual */}
+            <div style={{ display: 'flex', gap: 8, marginTop: 16, flexWrap: 'wrap' }}>
+              {ecDashboardBrands.map((b) => (
+                <BrandLogo key={b.brand} brand={b.brand} size={20} showLabel />
+              ))}
+            </div>
+          </CardSection>
         </div>
 
         {/* Recusas + Conversão + Parcelas */}
-        <div style={{ display: 'flex', gap: 24 }}>
-          <SectionCard title="Motivos de recusa por adquirente" flex={2}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 24 }}>
+          <CardSection title="Motivos de recusa por adquirente" icon="alertTriangle">
             <EmptyState title="Sem dados" description="Não encontramos dados para o período selecionado." paddingY={32} />
-          </SectionCard>
-          <SectionCard title="Índices de conversão" flex={1}>
-            {ecDashboardConversion.map((c) => (
-              <div key={c.channel} style={{ marginBottom: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
-                  <span>{c.channel}</span>
-                  <span style={{ color: 'rgba(0,0,0,0.65)' }}>{c.percent}%</span>
-                </div>
-                <Progress percent={c.percent} showInfo={false} size="small" />
-              </div>
-            ))}
-          </SectionCard>
-          <SectionCard title="Parcelas em cobranças de cartão" flex={1}>
-            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, height: 100, marginTop: 8 }}>
-              {ecDashboardInstallments.map((i) => {
-                const max = Math.max(...ecDashboardInstallments.map((x) => x.count), 1)
-                const h = (i.count / max) * 80
-                return (
-                  <div key={i.label} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <div style={{ width: '100%', height: Math.max(h, 2), background: '#1890FF', borderRadius: 2 }} />
-                    <span style={{ fontSize: 11, color: 'rgba(0,0,0,0.45)' }}>{i.label}</span>
-                  </div>
-                )
-              })}
-            </div>
-          </SectionCard>
+          </CardSection>
+
+          <CardSection title="Índices de conversão" icon="checkCircle">
+            <BarList
+              data={ecDashboardConversion.map((c) => ({ label: c.channel, value: c.percent, color: '#52C41A' }))}
+              asPercent
+            />
+          </CardSection>
+
+          <CardSection title="Parcelas em cobranças de cartão" icon="barChart">
+            <BarList
+              data={ecDashboardInstallments.map((i) => ({ label: i.label, value: i.count }))}
+              formatValue={(v) => v.toLocaleString('pt-BR')}
+            />
+          </CardSection>
         </div>
       </div>
     </div>
