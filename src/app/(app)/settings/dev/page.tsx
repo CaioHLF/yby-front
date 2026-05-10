@@ -11,7 +11,7 @@ import { manifests } from '@/features/manifests'
 import type { Persona, Version } from '@/features/manifests/types'
 import { usePersonaStore } from '@/stores/personaStore'
 
-export const IS_DEV_PERSONA_SWITCH_ENABLED = process.env.NODE_ENV !== 'production'
+const IS_DEV_PERSONA_SWITCH_ENABLED = process.env.NODE_ENV !== 'production'
 
 const PERSONA_LABELS: Record<Persona, string> = {
   estabelecimento: 'Estabelecimento Comercial',
