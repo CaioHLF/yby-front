@@ -1,14 +1,12 @@
 'use client'
 // Switcher de persona/versão exibido no GlobalHeader.
 //
-// Em produção (NODE_ENV === 'production') renderiza um span estático com a
-// persona vinda do JWT — visualmente igual ao badge atual "Sub-adquirente".
-//
-// Em dev/QA renderiza um botão clicável que abre um dropdown listando todas
-// as combinações persona×versão disponíveis nos manifests. Selecionar grava
-// no personaStore (isDevOverride=true) e visualmente troca pra amarelo +
-// borda tracejada para deixar GRITANTE que o usuário está em modo forçado
-// (heurística do enquadramento — Pixel/Rian Enviesados cap. 6).
+// O switcher é INTERATIVO sempre — esse projeto é uma demo navegável de
+// produto, não tem JWT/auth real ainda. O usuário precisa conseguir trocar
+// entre Estabelecimento / Sub-adquirente / Adquirente para ver os 3 fluxos.
+// Override ativo (isDevOverride=true) muda visual pra amarelo + borda tracejada
+// (heurística do enquadramento — Pixel/Rian Enviesados cap. 6) deixando claro
+// que está em modo forçado.
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
@@ -18,8 +16,6 @@ import { manifests } from '@/features/manifests'
 import { getDefaultRouteForPersona } from '@/features/manifests/routes'
 import type { Persona, PersonaManifest, Version } from '@/features/manifests/types'
 import { usePersonaStore } from '@/stores/personaStore'
-
-const IS_DEV = process.env.NODE_ENV !== 'production'
 
 const PERSONA_ORDER: Persona[] = ['estabelecimento', 'subadquirente', 'adquirente']
 
@@ -115,12 +111,6 @@ export default function PersonaSwitcher() {
   }, [open])
 
   const personaShort = PERSONA_SHORT[persona] ?? 'Sub-adquirente'
-
-  // Em prod: span estático (não-clicável)
-  if (!IS_DEV) {
-    return <span style={defaultTagStyle}>{personaShort}</span>
-  }
-
   const tagStyle = isDevOverride ? overrideTagStyle : defaultTagStyle
   const available = buildAvailable()
 
@@ -131,7 +121,7 @@ export default function PersonaSwitcher() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        title={isDevOverride ? 'Persona forçada (modo dev)' : 'Persona vem do perfil — click para forçar override (dev)'}
+        title={isDevOverride ? 'Persona alterada manualmente — clique para trocar' : 'Clique para trocar de persona (Estabelecimento / Sub-adquirente / Adquirente)'}
         style={{
           ...tagStyle,
           cursor: 'pointer',
@@ -169,7 +159,7 @@ export default function PersonaSwitcher() {
               borderBottom: '1px solid rgba(0,0,0,0.04)',
             }}
           >
-            Modo dev — forçar persona
+            Trocar de persona
           </div>
 
           {available.map(({ persona: p, version: v, label }) => {
