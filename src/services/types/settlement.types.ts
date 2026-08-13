@@ -27,6 +27,13 @@ export interface Settlement {
   ispbReceiver: string
   originAgent: string
   destinationAgent: string
+  // Organização/classificação — propagados do evento de liquidação do ledger.
+  // Opcionais: o caminho de layout Tupi não os preenche.
+  acquirerKind?: string
+  providerId?: string | null
+  acquirerId?: string | null
+  subacquirerId?: string | null
+  merchantId?: string | null
   instrumentType: string
   paymentArrangement: string
   originalValue: DecimalValue
