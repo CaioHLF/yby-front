@@ -106,6 +106,7 @@ export default function SettlementsTab() {
       render: (v: string) => {
         if (v === 'processed') return <StatusTag status="Liquidado" />
         if (v === 'rejected')  return <StatusTag status="Suspenso" label="Rejeitado" />
+        if (v === 'received')  return <StatusTag status="Pendente" label="Recebido" />
         return <StatusTag status="Pendente" label={STATUS_LABEL[v] ?? v} />
       },
     },

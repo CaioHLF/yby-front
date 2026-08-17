@@ -85,7 +85,7 @@ export async function request<T = unknown>(path: string, opts: RequestOptions = 
     method,
     headers,
     body: data !== undefined ? JSON.stringify(data) : undefined,
-    credentials: 'include',
+    credentials: 'omit',
   })
 
   const contentType = res.headers.get('content-type') ?? ''

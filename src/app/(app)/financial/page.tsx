@@ -11,6 +11,7 @@ import Tag from '@/components/shared/Tag'
 import Tooltip from '@/components/shared/Tooltip'
 import Sparkline from '@/components/shared/Sparkline'
 import BrandLogo from '@/components/shared/BrandLogo'
+import SettlementsTab from '@/components/financial/SettlementsTab'
 import { Progress, Tag as AntTag } from 'antd'
 import {
   subSolicitacoes,
@@ -878,8 +879,9 @@ export default function FinancialPage() {
       )}
 
       {/* ── EXTRATO TAB ── */}
-      {/* ── LIQUIDAÇÕES TAB ── */}
-      {tab==='liquidacoes' && (
+      {/* ── LIQUIDAÇÕES TAB (real: SettlementsTab consumindo o BFF) ── */}
+      {tab==='liquidacoes' && <SettlementsTab />}
+      {false && tab==='liquidacoes' && (
         <div style={{ padding:24, display:'flex', flexDirection:'column', gap:16 }}>
           {/* Filtros de status */}
           <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
